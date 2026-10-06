@@ -1,0 +1,216 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+const pakker = [
+  {
+    navn: 'Basis',
+    pris: '8.995',
+    beskrivelse: 'Til dig, der vil tage kørekortet i dit eget tempo.',
+    features: [
+      'Lovpligtig teori (29 lektioner)',
+      '8 køretimer',
+      'Manøvrebane (4 lektioner)',
+      'Glatbane (4 lektioner)',
+      'Booking af teoriprøve',
+      'Adgang til digital teoriportal',
+    ],
+    anbefalet: false,
+  },
+  {
+    navn: 'Anbefalet',
+    pris: '11.995',
+    beskrivelse: 'Vores mest populære pakke. De fleste elever vælger denne.',
+    features: [
+      'Lovpligtig teori (29 lektioner)',
+      '12 køretimer',
+      'Manøvrebane (4 lektioner)',
+      'Glatbane (4 lektioner)',
+      'Førstehjælpskursus',
+      'Booking af teori- og køreprøve',
+      'Adgang til digital teoriportal',
+      'Ekstra teorihjælp efter behov',
+    ],
+    anbefalet: true,
+  },
+  {
+    navn: 'Flex',
+    pris: '14.495',
+    beskrivelse: 'Til dig, der vil have maksimal fleksibilitet og ekstra timer.',
+    features: [
+      'Lovpligtig teori (29 lektioner)',
+      '16 køretimer',
+      'Manøvrebane (4 lektioner)',
+      'Glatbane (4 lektioner)',
+      'Førstehjælpskursus',
+      'Booking af teori- og køreprøve',
+      'Adgang til digital teoriportal',
+      'Ekstra teorihjælp efter behov',
+      '2 prøveforsøg inkluderet',
+    ],
+    anbefalet: false,
+  },
+];
+
+const gebyrer = [
+  { navn: 'Teoriprøve', pris: '1.050 kr.' },
+  { navn: 'Køreprøve', pris: '1.450 kr.' },
+  { navn: 'Lægeattest', pris: '500-800 kr.' },
+  { navn: 'Foto til kørekort', pris: '150 kr.' },
+];
+
+const faq = [
+  {
+    q: 'Kan jeg betale i rater?',
+    a: 'Ja. Vi tilbyder delbetaling uden renter. Kontakt os for at lave en aftale.',
+  },
+  {
+    q: 'Er der skjulte gebyrer?',
+    a: 'Nej. Alle priser er synlige på denne side. De eneste gebyrer ud over pakken er de lovpligtige prøvegebyrer.',
+  },
+  {
+    q: 'Hvornår skal jeg betale?',
+    a: 'Du betaler et depositum ved tilmelding, og resten fordeles over forløbet.',
+  },
+  {
+    q: 'Kan jeg få refunderet, hvis jeg stopper?',
+    a: 'Ja, hvis du stopper inden for de første 14 dage, refunderer vi det ubrugte beløb. Se handelsbetingelser.',
+  },
+];
+---
+
+<Layout title="Priser på kørekort i Randers · IC Køreskole">
+  <Nav />
+
+  <!-- HERO -->
+  <section class="bg-gradient-to-b from-[var(--color-brand-50)] to-white">
+    <div class="max-w-4xl mx-auto px-6 py-20 text-center">
+      <h1 class="text-4xl md:text-5xl font-extrabold text-[var(--color-brand-500)] mb-6">
+        Ingen skjulte gebyrer.<br />Se præcis hvad du betaler.
+      </h1>
+      <p class="text-lg text-[var(--color-ink-700)] max-w-2xl mx-auto">
+        Vi mener, at priser skal være gennemsigtige fra dag ét. Her er hele prisoversigten.
+      </p>
+    </div>
+  </section>
+
+  <!-- PAKKER -->
+  <section class="max-w-6xl mx-auto px-6 pb-20">
+    <div class="grid md:grid-cols-3 gap-6">
+      {pakker.map((p) => (
+        <div class:list={[
+          'rounded-2xl p-8 bg-white relative',
+          p.anbefalet ? 'border-2 border-[var(--color-accent-500)] shadow-lg' : 'border-2 border-gray-100'
+        ]}>
+          {p.anbefalet && (
+            <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--color-accent-500)] text-white text-xs font-bold px-3 py-1 rounded-full">
+              MEST POPULÆR
+            </span>
+          )}
+          <h2 class="text-2xl font-extrabold mb-2">{p.navn}</h2>
+          <p class="text-4xl font-extrabold text-[var(--color-brand-500)] mb-4">
+            {p.pris} <span class="text-base font-medium">kr.</span>
+          </p>
+          <p class="text-sm text-[var(--color-ink-700)] mb-6">{p.beskrivelse}</p>
+          <ul class="space-y-2 mb-8">
+            {p.features.map((f) => (
+              <li class="flex items-start gap-2 text-sm">
+                <span class="text-[var(--color-success)] font-bold">✓</span>
+                <span>{f}</span>
+              </li>
+            ))}
+          </ul>
+          <a href="/hold" class:list={[
+            'btn w-full text-sm',
+            p.anbefalet ? 'btn-primary' : 'btn-secondary'
+          ]}>
+            Vælg {p.navn}
+          </a>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- LOVPLIGTIGE GEBYRER -->
+  <section class="bg-[var(--color-brand-50)] py-20">
+    <div class="max-w-3xl mx-auto px-6">
+      <h2 class="text-3xl font-extrabold text-center mb-4 text-[var(--color-brand-500)]">
+        Lovpligtige gebyrer
+      </h2>
+      <p class="text-center text-[var(--color-ink-700)] mb-10">
+        Disse gebyrer betales direkte til Færdselsstyrelsen, lægen og fotograferen. Vi opkræver dem ikke.
+      </p>
+      <div class="bg-white rounded-2xl overflow-hidden">
+        <table class="w-full text-left">
+          <tbody>
+            {gebyrer.map((g) => (
+              <tr class="border-b border-gray-100 last:border-0">
+                <td class="p-4 font-medium">{g.navn}</td>
+                <td class="p-4 text-right text-[var(--color-ink-700)]">{g.pris}</td>
+              </tr>
+            ))}
+            <tr class="bg-[var(--color-brand-50)] font-bold">
+              <td class="p-4">I alt</td>
+              <td class="p-4 text-right">2.150-2.450 kr.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- BETALING -->
+  <section class="max-w-4xl mx-auto px-6 py-20">
+    <h2 class="text-3xl font-extrabold text-center mb-12 text-[var(--color-brand-500)]">
+      Sådan kan du betale
+    </h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      {[
+        { t: 'MobilePay', d: 'Hurtigt og nemt. Betal fra mobilen.' },
+        { t: 'Bankoverførsel', d: 'Til større beløb. Sikker overførsel.' },
+        { t: 'Delbetaling', d: 'Uden renter. Kontakt os for en aftale.' },
+      ].map((b) => (
+        <div class="bg-white border-2 border-gray-100 rounded-2xl p-6 text-center">
+          <h3 class="font-bold text-lg mb-2">{b.t}</h3>
+          <p class="text-sm text-[var(--color-ink-700)]">{b.d}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="bg-[var(--color-brand-50)] py-20">
+    <div class="max-w-3xl mx-auto px-6">
+      <h2 class="text-3xl font-extrabold text-center mb-10 text-[var(--color-brand-500)]">
+        Ofte stillede spørgsmål om betaling
+      </h2>
+      <div class="space-y-3">
+        {faq.map((item) => (
+          <details class="bg-white rounded-xl p-5 group">
+            <summary class="font-semibold cursor-pointer flex justify-between items-center">
+              {item.q}
+              <span class="text-[var(--color-accent-500)] group-open:rotate-45 transition text-2xl leading-none">+</span>
+            </summary>
+            <p class="mt-4 text-[var(--color-ink-700)] text-sm">{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="max-w-4xl mx-auto px-6 py-20 text-center">
+    <h2 class="text-3xl font-extrabold mb-4 text-[var(--color-brand-500)]">
+      Klar til at komme i gang?
+    </h2>
+    <p class="text-lg text-[var(--color-ink-700)] mb-8">
+      Vælg et hold og tilmeld dig online på 2 minutter.
+    </p>
+    <a href="/hold" class="btn btn-primary text-lg px-8 py-4">
+      Se ledige hold
+    </a>
+  </section>
+
+  <Footer />
+</Layout>

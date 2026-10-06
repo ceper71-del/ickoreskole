@@ -1,0 +1,165 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+const kategorier = [
+  {
+    navn: 'Priser',
+    ikon: '💰',
+    spørgsmål: [
+      {
+        q: 'Hvad koster et kørekort i alt?',
+        a: 'Vores pakker starter ved 8.995 kr. Hertil kommer lovpligtige gebyrer (teoriprøve, køreprøve, lægeattest, foto) på ca. 2.150-2.450 kr. Se fuld oversigt på priser-siden.',
+      },
+      {
+        q: 'Er der skjulte gebyrer?',
+        a: 'Nej. Alle priser er synlige på vores hjemmeside. De eneste gebyrer ud over pakken er de lovpligtige prøvegebyrer.',
+      },
+      {
+        q: 'Kan jeg betale i rater?',
+        a: 'Ja. Vi tilbyder delbetaling uden renter. Kontakt os for en aftale.',
+      },
+      {
+        q: 'Hvornår skal jeg betale?',
+        a: 'Du betaler et depositum ved tilmelding, og resten fordeles over forløbet.',
+      },
+    ],
+  },
+  {
+    navn: 'Booking',
+    ikon: '📅',
+    spørgsmål: [
+      {
+        q: 'Hvordan booker jeg en køretime?',
+        a: 'Du booker online på vores booking-side. Vælg dato og tid, bekræft, og du får en email med det samme.',
+      },
+      {
+        q: 'Kan jeg aflyse?',
+        a: 'Ja. Du kan aflyse eller flytte din tid op til 24 timer før. Ved senere afbud opkræves det fulde beløb.',
+      },
+      {
+        q: 'Hvad hvis jeg bliver syg?',
+        a: 'Kontakt os hurtigst muligt. Ved sygdom med lægeerklæring kan vi flytte timen uden gebyr.',
+      },
+      {
+        q: 'Kan jeg booke samme dag?',
+        a: 'Ja, hvis der er ledige tider. Se kalenderen på booking-siden.',
+      },
+    ],
+  },
+  {
+    navn: 'Teori',
+    ikon: '📚',
+    spørgsmål: [
+      {
+        q: 'Hvornår starter næste hold?',
+        a: 'Se kommende hold på hold-siden. Vi starter nye hold løbende.',
+      },
+      {
+        q: 'Skal jeg møde fysisk, eller kan det være online?',
+        a: 'Vi tilbyder både fremmøde og online teori. Spørg os om mulighederne.',
+      },
+      {
+        q: 'Hvad hvis jeg ikke består teoriprøven?',
+        a: 'Du kan tage prøven igen. Vi hjælper dig med ekstra teorihjælp, hvis du har brug for det.',
+      },
+    ],
+  },
+  {
+    navn: 'Prøve',
+    ikon: '🎓',
+    spørgsmål: [
+      {
+        q: 'Hvor lang tid tager det at få kørekort?',
+        a: 'De fleste elever bruger 3-6 måneder, afhængigt af hvor ofte du kører og tager teori.',
+      },
+      {
+        q: 'Hvad koster prøverne?',
+        a: 'Teoriprøve: 1.050 kr. Køreprøve: 1.450 kr. Disse betales direkte til Færdselsstyrelsen.',
+      },
+      {
+        q: 'Hvad hvis jeg dumper?',
+        a: 'Du kan tage prøven igen. I Flex-pakken er 2 prøveforsøg inkluderet.',
+      },
+    ],
+  },
+  {
+    navn: 'Praktisk',
+    ikon: '🚗',
+    spørgsmål: [
+      {
+        q: 'Har I automatgear?',
+        a: 'Ja, vi har både automatgear og manuelt gear. Vælg det, der passer dig.',
+      },
+      {
+        q: 'Kan jeg skifte instruktør?',
+        a: 'Ja, hvis du ønsker det. Kontakt os, og vi finder en løsning.',
+      },
+      {
+        q: 'Hvor møder jeg op?',
+        a: '[Adresse], 8900 Randers. Mød op 5 minutter før din tid.',
+      },
+    ],
+  },
+];
+---
+
+<Layout title="Ofte stillede spørgsmål · IC Køreskole">
+  <Nav />
+
+  <!-- HERO -->
+  <section class="bg-gradient-to-b from-[var(--color-brand-50)] to-white">
+    <div class="max-w-4xl mx-auto px-6 py-20 text-center">
+      <h1 class="text-4xl md:text-5xl font-extrabold text-[var(--color-brand-500)] mb-6">
+        Ofte stillede spørgsmål
+      </h1>
+      <p class="text-lg text-[var(--color-ink-700)] max-w-2xl mx-auto">
+        Find svar på de mest stillede spørgsmål. Kan du ikke finde det, du søger? Kontakt os.
+      </p>
+    </div>
+  </section>
+
+  <!-- KATEGORIER -->
+  <section class="max-w-4xl mx-auto px-6 pb-20">
+    <div class="space-y-12">
+      {kategorier.map((kategori) => (
+        <div>
+          <h2 class="text-2xl font-extrabold mb-6 text-[var(--color-brand-500)] flex items-center gap-3">
+            <span class="text-3xl">{kategori.ikon}</span>
+            {kategori.navn}
+          </h2>
+          <div class="space-y-3">
+            {kategori.spørgsmål.map((item) => (
+              <details class="bg-white border-2 border-gray-100 rounded-xl p-5 group hover:border-[var(--color-accent-500)] transition">
+                <summary class="font-semibold cursor-pointer flex justify-between items-center gap-4">
+                  <span>{item.q}</span>
+                  <span class="text-[var(--color-accent-500)] group-open:rotate-45 transition text-2xl leading-none shrink-0">+</span>
+                </summary>
+                <p class="mt-4 text-[var(--color-ink-700)] text-sm leading-relaxed">{item.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-[var(--color-brand-50)] py-20">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h2 class="text-3xl md:text-4xl font-extrabold mb-4 text-[var(--color-brand-500)]">
+        Har du stadig spørgsmål?
+      </h2>
+      <p class="text-lg text-[var(--color-ink-700)] mb-8 max-w-xl mx-auto">
+        Vi hjælper dig gerne. Send en besked, eller ring til os — vi svarer inden for 24 timer på hverdage.
+      </p>
+      <div class="flex flex-wrap gap-4 justify-center">
+        <a href="/kontakt" class="btn btn-primary">Kontakt os</a>
+        <a href="/booking" class="btn btn-secondary">Book køretime</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>

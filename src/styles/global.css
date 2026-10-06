@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+/* IC Køreskole — Design system */
+@theme {
+  /* Farver */
+  --color-brand-50: #f0f5fa;
+  --color-brand-100: #d9e6f2;
+  --color-brand-500: #1E3A5F;
+  --color-brand-600: #172e4d;
+  --color-brand-700: #0f2038;
+
+  --color-accent-400: #f7b877;
+  --color-accent-500: #F4A259;
+  --color-accent-600: #e08a3a;
+
+  --color-ink-900: #2D3436;
+  --color-ink-700: #4a5255;
+  --color-ink-500: #6b7275;
+
+  --color-success: #27AE60;
+  --color-danger: #E74C3C;
+
+  /* Fonte */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Radius */
+  --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
+}
+
+/* Base */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-ink-900);
+  background: #ffffff;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+/* Knapper */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all 0.15s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary {
+  background: var(--color-accent-500);
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background: var(--color-accent-600);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--color-brand-500);
+  border: 2px solid var(--color-brand-500);
+}
+
+.btn-secondary:hover {
+  background: var(--color-brand-500);
+  color: #ffffff;
+}

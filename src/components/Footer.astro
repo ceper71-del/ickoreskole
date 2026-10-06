@@ -1,0 +1,59 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-[var(--color-brand-500)] text-white mt-24">
+  <div class="max-w-6xl mx-auto px-6 py-16 grid md:grid-cols-4 gap-10">
+    <div>
+      <h3 class="font-extrabold text-lg mb-4">IC Køreskole</h3>
+      <p class="text-sm text-white/80 leading-relaxed">
+        [Adresse]<br />
+        8900 Randers
+      </p>
+      <p class="text-sm text-white/80 mt-4">
+        Tlf: [telefonnummer]<br />
+        Email: [email]
+      </p>
+    </div>
+
+    <div>
+      <h4 class="font-semibold mb-4">Åbningstider</h4>
+      <ul class="text-sm text-white/80 space-y-1">
+        <li>Man-fre: 8-18</li>
+        <li>Lør: 9-14</li>
+        <li>Søn: Lukket</li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="font-semibold mb-4">Links</h4>
+      <ul class="text-sm text-white/80 space-y-1">
+        <li><a href="/priser" class="hover:text-white">Priser</a></li>
+        <li><a href="/hold" class="hover:text-white">Hold</a></li>
+        <li><a href="/booking" class="hover:text-white">Booking</a></li>
+        <li><a href="/faq" class="hover:text-white">FAQ</a></li>
+        <li><a href="/kontakt" class="hover:text-white">Kontakt</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="font-semibold mb-4">Følg os</h4>
+      <ul class="text-sm text-white/80 space-y-1">
+        <li><a href="#" class="hover:text-white">Instagram</a></li>
+        <li><a href="#" class="hover:text-white">Facebook</a></li>
+        <li><a href="#" class="hover:text-white">TikTok</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="border-t border-white/10">
+    <div class="max-w-6xl mx-auto px-6 py-6 text-xs text-white/60 flex flex-wrap gap-4 justify-between">
+      <span>© {year} IC Køreskole · CVR: [nummer]</span>
+      <div class="flex gap-4">
+        <a href="#" class="hover:text-white">Privatlivspolitik</a>
+        <a href="#" class="hover:text-white">Handelsbetingelser</a>
+        <a href="#" class="hover:text-white">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>

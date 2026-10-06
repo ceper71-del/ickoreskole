@@ -1,11 +1,273 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const hold = [
+  { id: 1, start: '3. februar 2026', tid: 'man + ons, 17-19', ledige: 4, iAlt: 12 },
+  { id: 2, start: '10. februar 2026', tid: 'tir + tor, 17-19', ledige: 7, iAlt: 12 },
+  { id: 3, start: '17. februar 2026', tid: 'man + ons, 17-19', ledige: 12, iAlt: 12 },
+];
+
+const pakker = [
+  {
+    navn: 'Basis',
+    pris: '8.995',
+    beskrivelse: 'Til dig, der vil tage kørekortet i dit eget tempo.',
+    features: ['Lovpligtig teori (29 lektioner)', '8 køretimer', 'Manøvrebane', 'Glatbane', 'Teoriprøve booking'],
+    anbefalet: false,
+  },
+  {
+    navn: 'Anbefalet',
+    pris: '11.995',
+    beskrivelse: 'Vores mest populære pakke. De fleste elever vælger denne.',
+    features: ['Lovpligtig teori (29 lektioner)', '12 køretimer', 'Manøvrebane', 'Glatbane', 'Førstehjælpskursus', 'Teori- og køreprøve booking'],
+    anbefalet: true,
+  },
+  {
+    navn: 'Flex',
+    pris: '14.495',
+    beskrivelse: 'Til dig, der vil have maksimal fleksibilitet og ekstra timer.',
+    features: ['Lovpligtig teori (29 lektioner)', '16 køretimer', 'Manøvrebane', 'Glatbane', 'Førstehjælpskursus', '2 prøveforsøg inkluderet', 'Ekstra teorihjælp'],
+    anbefalet: false,
+  },
+];
+
+const faq = [
+  {
+    q: 'Hvad koster et kørekort i alt?',
+    a: 'Vores pakker starter ved 8.995 kr. Hertil kommer lovpligtige gebyrer til prøver og lægeattest (ca. 2.500-3.000 kr.). Se fuld prisoversigt på priser-siden.',
+  },
+  {
+    q: 'Kan jeg booke online?',
+    a: 'Ja. Du kan booke både teorihold og køretimer direkte på vores hjemmeside — uden at ringe.',
+  },
+  {
+    q: 'Hvad hvis jeg skal aflyse?',
+    a: 'Du kan aflyse eller flytte din køretime op til 24 timer før. Se vores afbudsregler på booking-siden.',
+  },
+  {
+    q: 'Hvor lang tid tager det at få kørekort?',
+    a: 'De fleste elever bruger 3-6 måneder, afhængigt af hvor ofte du kører og tager teori.',
+  },
+  {
+    q: 'Har I automatgear?',
+    a: 'Ja, vi har både automatgear og manuelt gear. Vælg det, der passer dig.',
+  },
+  {
+    q: 'Hvordan betaler jeg?',
+    a: 'Du kan betale med MobilePay, bankoverførsel eller i rater. Kontakt os for en aftale.',
+  },
+];
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="IC Køreskole · Køreskole i Randers · Book online">
+  <Nav />
+
+  <!-- HERO -->
+  <section class="bg-gradient-to-b from-[var(--color-brand-50)] to-white">
+    <div class="max-w-6xl mx-auto px-6 py-20 md:py-28 text-center">
+      <h1 class="text-4xl md:text-6xl font-extrabold text-[var(--color-brand-500)] mb-6">
+        Tag kørekortet i Randers<br class="hidden md:block" /> — uden stress
+      </h1>
+      <p class="text-lg md:text-xl text-[var(--color-ink-700)] max-w-2xl mx-auto mb-10">
+        Book online på 60 sekunder. Gennemsigtige priser. Fast instruktør hele forløbet.
+      </p>
+      <div class="flex flex-wrap gap-4 justify-center mb-8">
+        <a href="/booking" class="btn btn-primary">Book køretime</a>
+        <a href="/priser" class="btn btn-secondary">Se priser</a>
+      </div>
+      <p class="text-sm text-[var(--color-ink-500)]">
+        ★★★★★ 4,9/5 baseret på 87 anmeldelser · 120+ elever bestået
+      </p>
+    </div>
+  </section>
+
+  <!-- USP'ER -->
+  <section class="max-w-6xl mx-auto px-6 py-20">
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="text-center">
+        <div class="text-4xl mb-4">⚡</div>
+        <h3 class="text-xl font-bold mb-3">Book online på 60 sekunder</h3>
+        <p class="text-[var(--color-ink-700)]">
+          Vælg tid, få bekræftelse med det samme. Ingen telefonopkald, ingen ventetid.
+        </p>
+      </div>
+      <div class="text-center">
+        <div class="text-4xl mb-4">💰</div>
+        <h3 class="text-xl font-bold mb-3">Ingen skjulte gebyrer</h3>
+        <p class="text-[var(--color-ink-700)]">
+          Se præcis hvad du betaler, før du starter. Alle priser er synlige fra dag ét.
+        </p>
+      </div>
+      <div class="text-center">
+        <div class="text-4xl mb-4">🎯</div>
+        <h3 class="text-xl font-bold mb-3">Fast instruktør hele forløbet</h3>
+        <p class="text-[var(--color-ink-700)]">
+          Ingen skift, ingen forvirring. Du kører med samme instruktør fra første til sidste time.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SÅDAN FOREGÅR DET -->
+  <section class="bg-[var(--color-brand-50)] py-20">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-12 text-[var(--color-brand-500)]">
+        Sådan foregår det
+      </h2>
+      <div class="grid md:grid-cols-4 gap-6">
+        {[
+          { n: '1', t: 'Tilmeld dig', d: 'Vælg et teorihold eller book din første køretime direkte online.' },
+          { n: '2', t: 'Teori', d: 'Du gennemfører teorikurset — enten online eller fremmøde. Vi hjælper hele vejen.' },
+          { n: '3', t: 'Kør', d: 'Fast instruktør, fleksible tider. Vi tilpasser forløbet til dig, ikke omvendt.' },
+          { n: '4', t: 'Bestå', d: 'Vi følger dig helt til køreprøven — og til du står med kortet i hånden.' },
+        ].map((step) => (
+          <div class="bg-white rounded-2xl p-6 shadow-sm">
+            <div class="w-10 h-10 rounded-full bg-[var(--color-accent-500)] text-white font-bold flex items-center justify-center mb-4">
+              {step.n}
+            </div>
+            <h3 class="font-bold text-lg mb-2">{step.t}</h3>
+            <p class="text-sm text-[var(--color-ink-700)]">{step.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- NÆSTE LEDIGE HOLD -->
+  <section class="max-w-6xl mx-auto px-6 py-20">
+    <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-4 text-[var(--color-brand-500)]">
+      Næste ledige hold
+    </h2>
+    <p class="text-center text-[var(--color-ink-700)] mb-12 max-w-xl mx-auto">
+      Vælg det hold, der passer dig. Ledige pladser opdateres løbende.
+    </p>
+    <div class="grid md:grid-cols-3 gap-6">
+      {hold.map((h) => (
+        <div class="border-2 border-gray-100 rounded-2xl p-6 hover:border-[var(--color-accent-500)] transition">
+          <p class="text-sm font-semibold text-[var(--color-accent-600)] mb-2">HOLD {h.id}</p>
+          <h3 class="text-xl font-bold mb-4">{h.start}</h3>
+          <p class="text-sm text-[var(--color-ink-700)] mb-2">Teori: {h.tid}</p>
+          <p class="text-sm text-[var(--color-ink-700)] mb-6">
+            Ledige pladser: <strong>{h.ledige} af {h.iAlt}</strong>
+          </p>
+          <a href="/hold" class="btn btn-secondary w-full text-sm py-2">Tilmeld dig</a>
+        </div>
+      ))}
+    </div>
+    <div class="text-center mt-10">
+      <a href="/hold" class="text-[var(--color-brand-500)] font-semibold hover:underline">
+        Se alle hold →
+      </a>
+    </div>
+  </section>
+
+  <!-- PAKKER & PRISER -->
+  <section class="bg-[var(--color-brand-50)] py-20">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-4 text-[var(--color-brand-500)]">
+        Vælg den pakke, der passer til dig
+      </h2>
+      <p class="text-center text-[var(--color-ink-700)] mb-12 max-w-2xl mx-auto">
+        Alle pakker inkluderer lovpligtig teori, manøvrebane og glatbane. Ingen skjulte gebyrer.
+      </p>
+      <div class="grid md:grid-cols-3 gap-6">
+        {pakker.map((p) => (
+          <div class:list={[
+            'rounded-2xl p-8 bg-white relative',
+            p.anbefalet ? 'border-2 border-[var(--color-accent-500)] shadow-lg' : 'border-2 border-gray-100'
+          ]}>
+            {p.anbefalet && (
+              <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--color-accent-500)] text-white text-xs font-bold px-3 py-1 rounded-full">
+                MEST POPULÆR
+              </span>
+            )}
+            <h3 class="text-2xl font-extrabold mb-2">{p.navn}</h3>
+            <p class="text-4xl font-extrabold text-[var(--color-brand-500)] mb-4">
+              {p.pris} <span class="text-base font-medium">kr.</span>
+            </p>
+            <p class="text-sm text-[var(--color-ink-700)] mb-6">{p.beskrivelse}</p>
+            <ul class="space-y-2 mb-8">
+              {p.features.map((f) => (
+                <li class="flex items-start gap-2 text-sm">
+                  <span class="text-[var(--color-success)] font-bold">✓</span>
+                  <span>{f}</span>
+                </li>
+              ))}
+            </ul>
+            <a href="/priser" class:list={[
+              'btn w-full text-sm',
+              p.anbefalet ? 'btn-primary' : 'btn-secondary'
+            ]}>
+              Vælg {p.navn}
+            </a>
+          </div>
+        ))}
+      </div>
+      <p class="text-center text-xs text-[var(--color-ink-500)] mt-8 max-w-2xl mx-auto">
+        Lovpligtige gebyrer (teoriprøve, køreprøve, lægeattest og foto) er ikke inkluderet.
+        Se fuld prisoversigt på <a href="/priser" class="underline">priser-siden</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- ELEVHISTORIER -->
+  <section class="max-w-6xl mx-auto px-6 py-20">
+    <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-12 text-[var(--color-brand-500)]">
+      Hvad siger vores elever?
+    </h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      {[
+        { citat: 'Jeg havde prøvet to andre køreskoler, men her følte jeg mig endelig tryg. Bookingen var super nem, og min instruktør var tålmodig hele vejen.', navn: 'Maja, 19 år' },
+        { citat: 'Det bedste var, at jeg kunne booke køretimer online om aftenen, når jeg havde tid. Ingen telefonopkald, ingen ventetid.', navn: 'Kasper, 22 år' },
+        { citat: 'Jeg var nervøs for teoriprøven, men fik ekstra hjælp uden ekstra regning. Bestod i første forsøg.', navn: 'Sofie, 24 år' },
+      ].map((e) => (
+        <blockquote class="bg-[var(--color-brand-50)] rounded-2xl p-6">
+          <p class="text-[var(--color-ink-700)] italic mb-4">"{e.citat}"</p>
+          <footer class="text-sm font-semibold text-[var(--color-brand-500)]">— {e.navn}</footer>
+        </blockquote>
+      ))}
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="bg-[var(--color-brand-50)] py-20">
+    <div class="max-w-3xl mx-auto px-6">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-12 text-[var(--color-brand-500)]">
+        Ofte stillede spørgsmål
+      </h2>
+      <div class="space-y-3">
+        {faq.map((item) => (
+          <details class="bg-white rounded-xl p-5 group">
+            <summary class="font-semibold cursor-pointer flex justify-between items-center">
+              {item.q}
+              <span class="text-[var(--color-accent-500)] group-open:rotate-45 transition text-2xl leading-none">+</span>
+            </summary>
+            <p class="mt-4 text-[var(--color-ink-700)] text-sm">{item.a}</p>
+          </details>
+        ))}
+      </div>
+      <div class="text-center mt-10">
+        <a href="/faq" class="text-[var(--color-brand-500)] font-semibold hover:underline">
+          Se alle spørgsmål →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA-BÅND -->
+  <section class="max-w-4xl mx-auto px-6 py-20 text-center">
+    <h2 class="text-3xl md:text-4xl font-extrabold mb-4 text-[var(--color-brand-500)]">
+      Klar til at starte?
+    </h2>
+    <p class="text-lg text-[var(--color-ink-700)] mb-8">
+      Book din første køretime online på 60 sekunder. Vi glæder os til at møde dig.
+    </p>
+    <a href="/booking" class="btn btn-primary text-lg px-8 py-4">
+      Book køretime nu
+    </a>
+  </section>
+
+  <Footer />
 </Layout>

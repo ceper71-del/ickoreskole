@@ -1,0 +1,32 @@
+---
+const links = [
+  { href: '/priser', label: 'Priser' },
+  { href: '/hold', label: 'Hold' },
+  { href: '/booking', label: 'Booking' },
+  { href: '/om-os', label: 'Om os' },
+  { href: '/faq', label: 'FAQ' },
+  { href: '/kontakt', label: 'Kontakt' },
+];
+---
+
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-gray-100">
+  <nav class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="/" class="font-extrabold text-xl text-[var(--color-brand-500)]">
+      IC Køreskole
+    </a>
+
+    <ul class="hidden md:flex items-center gap-6 text-sm font-medium text-[var(--color-ink-700)]">
+      {links.map((link) => (
+        <li>
+          <a href={link.href} class="hover:text-[var(--color-brand-500)] transition">
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <a href="/booking" class="btn btn-primary text-sm py-2 px-4">
+      Book køretime
+    </a>
+  </nav>
+</header>
