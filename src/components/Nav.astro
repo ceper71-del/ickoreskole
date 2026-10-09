@@ -10,9 +10,9 @@ const links = [
 ---
 
 <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-gray-100">
-  <nav class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-    <a href="/" class="font-extrabold text-xl text-[var(--color-brand-500)]">
-      IC Køreskole
+  <nav class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between gap-4">
+    <a href="/" class="flex items-center gap-3 shrink-0" aria-label="Easy Køreskole — forside">
+      <img src="/logo.svg" alt="Easy Køreskole" class="h-12 w-auto" />
     </a>
 
     <ul class="hidden md:flex items-center gap-6 text-sm font-medium text-[var(--color-ink-700)]">
@@ -25,8 +25,13 @@ const links = [
       ))}
     </ul>
 
-    <a href="/booking" class="btn btn-primary text-sm py-2 px-4">
-      Book køretime
-    </a>
+    <div class="flex items-center gap-2 shrink-0">
+      <a href="/hold" class="btn btn-secondary text-sm py-2 px-4">
+        Tilmeld
+      </a>
+      <a href="/booking" class="btn btn-primary text-sm py-2 px-4">
+        Book køretime
+      </a>
+    </div>
   </nav>
 </header>

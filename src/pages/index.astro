@@ -61,23 +61,39 @@ const faq = [
 ];
 ---
 
-<Layout title="IC Køreskole · Køreskole i Randers · Book online">
+<Layout title="Køreskole i Randers · Book online">
   <Nav />
 
-  <!-- HERO -->
-  <section class="bg-gradient-to-b from-[var(--color-brand-50)] to-white">
-    <div class="max-w-6xl mx-auto px-6 py-20 md:py-28 text-center">
-      <h1 class="text-4xl md:text-6xl font-extrabold text-[var(--color-brand-500)] mb-6">
-        Tag kørekortet i Randers<br class="hidden md:block" /> — uden stress
+  <!-- HERO med baggrundsbillede -->
+    <!-- HERO -->
+  <section class="relative overflow-hidden min-h-[500px] md:min-h-[600px]">
+    <!-- Baggrundsbillede — hele billedet vises -->
+    <div class="absolute inset-0 bg-[#e8efe6]">
+      <img
+        src="/images/ICK_Hjemme.jpg"
+        alt=""
+        class="w-full h-full object-contain object-center"
+        aria-hidden="true"
+      />
+      <!-- Valgfrit: let mørk overlay bag teksten -->
+      <div class="absolute inset-0 bg-black/30"></div>
+    </div>
+
+    <!-- Tekst ovenpå -->
+    <div class="relative max-w-4xl mx-auto px-6 py-20 md:py-28 text-center">
+      <h1 class="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 drop-shadow-2xl">
+        Tag kørekortet i Randers — uden stress
       </h1>
-      <p class="text-lg md:text-xl text-[var(--color-ink-700)] max-w-2xl mx-auto mb-10">
+      <p class="text-lg md:text-xl text-white mb-10 drop-shadow-lg max-w-2xl mx-auto">
         Book online på 60 sekunder. Gennemsigtige priser. Fast instruktør hele forløbet.
       </p>
       <div class="flex flex-wrap gap-4 justify-center mb-8">
-        <a href="/booking" class="btn btn-primary">Book køretime</a>
-        <a href="/priser" class="btn btn-secondary">Se priser</a>
+        <a href="/booking" class="btn btn-primary text-base px-6 py-3">Book køretime</a>
+        <a href="/priser" class="btn text-base px-6 py-3 bg-white text-[var(--color-brand-500)] hover:bg-gray-100">
+          Se priser
+        </a>
       </div>
-      <p class="text-sm text-[var(--color-ink-500)]">
+      <p class="text-sm text-white drop-shadow-lg">
         ★★★★★ 4,9/5 baseret på 87 anmeldelser · 120+ elever bestået
       </p>
     </div>

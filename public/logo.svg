@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 100" fill="none">
+  <!-- Ikon: Åbent C med diagonal streg -->
+  <g transform="translate(10, 10)">
+    <!-- Åbent C (sort) -->
+    <path
+      d="M 40 0 A 40 40 0 1 0 40 80 A 40 40 0 0 0 75 62 L 62 52 A 24 24 0 1 1 62 28 L 75 18 A 40 40 0 0 0 40 0 Z"
+      fill="#111111"
+    />
+    <!-- Diagonal streg (orange) -->
+    <rectI
+      x="28" y="34"
+      width="46" height="16"
+      rx="2"
+      transform="rotate(-45 51 42)"
+      fill="#D8623B"
+    />
+    <!-- Lille trekant (orange) - øverst højre -->
+    <path
+      d="M 58 12 L 72 2 L 78 16 Z"
+      fill="#D8623B"
+    />
+  </g>
+
+  <!-- Tekst: IC KØRESKOLE -->
+  <text
+    x="110" y="48"
+    font-family="Inter, system-ui, -apple-system, sans-serif"
+    font-size="30"
+    font-weight="800"
+    fill="#111111"
+    letter-spacing="-0.8"
+  >IC KØRESKOLE</text>
+
+  <!-- Undertitel -->
+  <text
+    x="112" y="72"
+    font-family="Inter, system-ui, -apple-system, sans-serif"
+    font-size="16"
+    font-weight="500"
+    fill="#D8623B"
+    letter-spacing="0.2"
+  >Køreskole i Jylland</text>
+</svg>
