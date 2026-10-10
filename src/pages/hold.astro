@@ -1,85 +1,272 @@
-<form
-  name="tilmeld"
-  method="POST"
-  data-netlify="true"
-  netlify-honeypot="bot-field"
-  class="bg-white rounded-2xl p-8 space-y-5"
->
-  <input type="hidden" name="form-name" value="tilmeld" />
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
 
-  <p style="display: none;">
-    <label>Udfyld ikke dette felt: <input name="bot-field" /></label>
-  </p>
+const hold = [
+  {
+    id: 1,
+    start: '3. februar 2026',
+    tid: 'mandag + onsdag, 17-19',
+    sted: '[Adresse], Randers',
+    ledige: 4,
+    iAlt: 12,
+  },
+  {
+    id: 2,
+    start: '10. februar 2026',
+    tid: 'tirsdag + torsdag, 17-19',
+    sted: '[Adresse], Randers',
+    ledige: 7,
+    iAlt: 12,
+  },
+  {
+    id: 3,
+    start: '17. februar 2026',
+    tid: 'mandag + onsdag, 17-19',
+    sted: '[Adresse], Randers',
+    ledige: 12,
+    iAlt: 12,
+  },
+  {
+    id: 4,
+    start: '24. februar 2026',
+    tid: 'tirsdag + torsdag, 18-20',
+    sted: '[Adresse], Randers',
+    ledige: 9,
+    iAlt: 12,
+  },
+  {
+    id: 5,
+    start: '2. marts 2026',
+    tid: 'mandag + onsdag, 17-19',
+    sted: '[Adresse], Randers',
+    ledige: 12,
+    iAlt: 12,
+  },
+  {
+    id: 6,
+    start: '9. marts 2026',
+    tid: 'tirsdag + torsdag, 18-20',
+    sted: '[Adresse], Randers',
+    ledige: 12,
+    iAlt: 12,
+  },
+];
 
-  <div>
-    <label for="navn" class="block text-sm font-semibold mb-2">Navn *</label>
-    <input
-      type="text"
-      id="navn"
-      name="navn"
-      required
-      class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-[var(--color-accent-500)] focus:outline-none"
-    />
-  </div>
+const trin = [
+  { n: '1', t: 'Du modtager en email', d: 'Med bekræftelse og praktisk info om dit hold.' },
+  { n: '2', t: 'Vi kontakter dig', d: 'Hvis vi har brug for flere oplysninger.' },
+  { n: '3', t: 'Du møder op', d: 'På første teorilektion til den aftalte tid.' },
+  { n: '4', t: 'Du starter dit forløb', d: 'Og vi følger dig hele vejen til kortet.' },
+];
 
-  <div>
-    <label for="email" class="block text-sm font-semibold mb-2">Email *</label>
-    <input
-      type="email"
-      id="email"
-      name="email"
-      required
-      class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-[var(--color-accent-500)] focus:outline-none"
-    />
-  </div>
+const faq = [
+  {
+    q: 'Kan jeg skifte hold?',
+    a: 'Ja, hvis der er plads på et andet hold, kan du skifte. Kontakt os.',
+  },
+  {
+    q: 'Hvad hvis holdet er fuldt?',
+    a: 'Så kan du skrive dig på ventelisten. Vi kontakter dig, hvis der bliver en plads ledig.',
+  },
+  {
+    q: 'Kan jeg tage teorien online?',
+    a: 'Ja, vi tilbyder både fremmøde og online teori. Spørg os om mulighederne.',
+  },
+  {
+    q: 'Hvornår ved jeg, om jeg er tilmeldt?',
+    a: 'Du modtager en email med bekræftelse inden for få minutter efter tilmelding.',
+  },
+];
+---
 
-  <div>
-    <label for="telefon" class="block text-sm font-semibold mb-2">Telefon *</label>
-    <input
-      type="tel"
-      id="telefon"
-      name="telefon"
-      required
-      class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-[var(--color-accent-500)] focus:outline-none"
-    />
-  </div>
+<Layout title="Kommende teorihold · IC Køreskole Randers">
+  <Nav />
 
-  <div>
-    <label for="hold" class="block text-sm font-semibold mb-2">Ønsket hold *</label>
-    <select
-      id="hold"
-      name="hold"
-      required
-      class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-[var(--color-accent-500)] focus:outline-none bg-white"
-    >
-      <option value="">Vælg hold…</option>
+  <!-- HERO -->
+  <section class="bg-gradient-to-b from-[var(--color-brand-50)] to-white">
+    <div class="max-w-4xl mx-auto px-6 py-20 text-center">
+      <h1 class="text-4xl md:text-5xl font-extrabold text-[var(--color-brand-500)] mb-6">
+        Tilmeld dig næste teorihold
+      </h1>
+      <p class="text-lg text-[var(--color-ink-700)] max-w-2xl mx-auto">
+        Vælg det hold, der passer til din hverdag. Tilmeld dig online på 2 minutter.
+      </p>
+    </div>
+  </section>
+
+  <!-- HOLDOVERSIGT -->
+  <section class="max-w-6xl mx-auto px-6 pb-20">
+    <h2 class="text-2xl font-extrabold mb-8 text-[var(--color-brand-500)]">
+      Kommende hold
+    </h2>
+    <div class="grid md:grid-cols-3 gap-6">
       {hold.map((h) => (
-        <option value={`Hold ${h.id} — ${h.start}`}>
-          Hold {h.id} — {h.start} ({h.tid})
-        </option>
+        <div class="border-2 border-gray-100 rounded-2xl p-6 hover:border-[var(--color-accent-500)] transition flex flex-col">
+          <p class="text-sm font-semibold text-[var(--color-accent-600)] mb-2">
+            HOLD {h.id}
+          </p>
+          <h3 class="text-xl font-bold mb-4">{h.start}</h3>
+          <p class="text-sm text-[var(--color-ink-700)] mb-1">
+            <strong>Teori:</strong> {h.tid}
+          </p>
+          <p class="text-sm text-[var(--color-ink-700)] mb-4">
+            <strong>Sted:</strong> {h.sted}
+          </p>
+          <p class="text-sm mb-6">
+            <span class={h.ledige <= 4 ? 'text-[var(--color-danger)] font-bold' : 'text-[var(--color-success)] font-bold'}>
+              {h.ledige} af {h.iAlt}
+            </span>{' '}
+            <span class="text-[var(--color-ink-700)]">pladser ledige</span>
+          </p>
+          <a href="#tilmeld" class="btn btn-secondary w-full text-sm py-2 mt-auto">
+            Tilmeld dig
+          </a>
+        </div>
       ))}
-    </select>
-  </div>
+    </div>
+  </section>
 
-  <div>
-    <label for="kommentar" class="block text-sm font-semibold mb-2">Kommentar (valgfrit)</label>
-    <textarea
-      id="kommentar"
-      name="kommentar"
-      rows="4"
-      class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-[var(--color-accent-500)] focus:outline-none"
-    ></textarea>
-  </div>
+  <!-- TILMELDINGSFORMULAR -->
+  <section id="tilmeld" class="bg-[var(--color-brand-50)] py-20">
+    <div class="max-w-2xl mx-auto px-6">
+      <h2 class="text-3xl font-extrabold text-center mb-4 text-[var(--color-brand-500)]">
+        Tilmeld dig et hold
+      </h2>
+      <p class="text-center text-[var(--color-ink-700)] mb-10">
+        Udfyld formularen, så vender vi tilbage med en bekræftelse.
+      </p>
 
-  <label class="flex items-start gap-3 text-sm">
-    <input type="checkbox" name="samtykke" required class="mt-1" />
-    <span class="text-[var(--color-ink-700)]">
-      Jeg accepterer, at IC Køreskole må kontakte mig angående min tilmelding. Se
-      <a href="#" class="underline">privatlivspolitik</a>.
-    </span>
-  </label>
+      <form
+        name="tilmeld"
+        method="POST"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+        class="bg-white rounded-2xl p-8 space-y-5"
+      >
+        <input type="hidden" name="form-name" value="tilmeld" />
 
-  <button type="submit" class="btn btn-primary w-full text-base py-3">
-    Send tilmelding
-  </button>
-</form>
+        <p style="display: none;">
+          <label>Udfyld ikke dette felt: <input name="bot-field" /></label>
+        </p>
+
+        <div>
+          <label for="navn" class="block text-sm font-semibold mb-2">Navn *</label>
+          <input
+            type="text"
+            id="navn"
+            name="navn"
+            required
+            class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-[var(--color-accent-500)] focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label for="email" class="block text-sm font-semibold mb-2">Email *</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-[var(--color-accent-500)] focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label for="telefon" class="block text-sm font-semibold mb-2">Telefon *</label>
+          <input
+            type="tel"
+            id="telefon"
+            name="telefon"
+            required
+            class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-[var(--color-accent-500)] focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label for="hold" class="block text-sm font-semibold mb-2">Ønsket hold *</label>
+          <select
+            id="hold"
+            name="hold"
+            required
+            class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-[var(--color-accent-500)] focus:outline-none bg-white"
+          >
+            <option value="">Vælg hold…</option>
+            {hold.map((h) => (
+              <option value={`Hold ${h.id} — ${h.start}`}>
+                Hold {h.id} — {h.start} ({h.tid})
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div>
+          <label for="kommentar" class="block text-sm font-semibold mb-2">Kommentar (valgfrit)</label>
+          <textarea
+            id="kommentar"
+            name="kommentar"
+            rows="4"
+            class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-[var(--color-accent-500)] focus:outline-none"
+          ></textarea>
+        </div>
+
+        <label class="flex items-start gap-3 text-sm">
+          <input type="checkbox" name="samtykke" required class="mt-1" />
+          <span class="text-[var(--color-ink-700)]">
+            Jeg accepterer, at IC Køreskole må kontakte mig angående min tilmelding. Se
+            <a href="#" class="underline">privatlivspolitik</a>.
+          </span>
+        </label>
+
+        <button type="submit" class="btn btn-primary w-full text-base py-3">
+          Send tilmelding
+        </button>
+
+        <p class="text-xs text-center text-[var(--color-ink-500)]">
+          Felter markeret med * er påkrævede.
+        </p>
+      </form>
+    </div>
+  </section>
+
+  <!-- HVAD SKER DER EFTER TILMELDING -->
+  <section class="max-w-6xl mx-auto px-6 py-20">
+    <h2 class="text-3xl font-extrabold text-center mb-12 text-[var(--color-brand-500)]">
+      Hvad sker der nu?
+    </h2>
+    <div class="grid md:grid-cols-4 gap-6">
+      {trin.map((t) => (
+        <div class="bg-[var(--color-brand-50)] rounded-2xl p-6">
+          <div class="w-10 h-10 rounded-full bg-[var(--color-accent-500)] text-white font-bold flex items-center justify-center mb-4">
+            {t.n}
+          </div>
+          <h3 class="font-bold text-lg mb-2">{t.t}</h3>
+          <p class="text-sm text-[var(--color-ink-700)]">{t.d}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="bg-[var(--color-brand-50)] py-20">
+    <div class="max-w-3xl mx-auto px-6">
+      <h2 class="text-3xl font-extrabold text-center mb-10 text-[var(--color-brand-500)]">
+        Ofte stillede spørgsmål om hold
+      </h2>
+      <div class="space-y-3">
+        {faq.map((item) => (
+          <details class="bg-white rounded-xl p-5 group">
+            <summary class="font-semibold cursor-pointer flex justify-between items-center">
+              {item.q}
+              <span class="text-[var(--color-accent-500)] group-open:rotate-45 transition text-2xl leading-none">+</span>
+            </summary>
+            <p class="mt-4 text-[var(--color-ink-700)] text-sm">{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
