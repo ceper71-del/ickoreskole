@@ -9,9 +9,9 @@
   --color-brand-600: #172e4d;
   --color-brand-700: #0f2038;
 
-  --color-accent-400: #f7b877;
-  --color-accent-500: #F4A259;
-  --color-accent-600: #e08a3a;
+  --color-accent-400: #4a6c92;
+  --color-accent-500: #1E3A5F;
+  --color-accent-600: #172e4d;
 
   --color-ink-900: #2D3436;
   --color-ink-700: #4a5255;
@@ -81,4 +81,91 @@ h1, h2, h3, h4 {
 .btn-secondary:hover {
   background: var(--color-brand-500);
   color: #ffffff;
+}
+.btn-accent {
+  background: #ff5555;
+  color: #ffffff;
+}
+
+.btn-accent:hover {
+  background: #e64545;
+  transform: translateY(-1px);
+}
+/* Header-knapper */
+.btn-tilmeld,
+.btn-book {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.875rem 1.75rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  color: #ffffff;
+  white-space: nowrap;
+  min-width: 160px;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.3s ease,
+              background 0.3s ease;
+}
+
+/* Lys der glider hen over knappen */
+.btn-tilmeld::before,
+.btn-book::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.25),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.btn-tilmeld:hover::before,
+.btn-book:hover::before {
+  left: 100%;
+}
+
+.btn-tilmeld {
+  background: #ff5555;
+}
+
+.btn-tilmeld:hover {
+  background: #e64545;
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 10px 25px rgba(255, 85, 85, 0.4);
+}
+
+.btn-book {
+  background: var(--color-brand-500);
+}
+
+.btn-book:hover {
+  background: var(--color-brand-600);
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 10px 25px rgba(30, 58, 95, 0.35);
+}
+.btn-brand {
+  background: var(--color-brand-500);
+  color: #ffffff;
+  border: 2px solid var(--color-brand-500);
+  transition: all 0.15s ease;
+}
+
+.btn-brand:hover {
+  background: transparent;
+  color: var(--color-brand-500);
+  border: 2px solid var(--color-brand-500);
+  transform: translateY(-1px);
 }

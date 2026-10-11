@@ -1,68 +1,203 @@
-<form
-  name="kontakt"
-  method="POST"
-  data-netlify="true"
-  netlify-honeypot="bot-field"
-  class="bg-white border-2 border-gray-100 rounded-2xl p-6 space-y-5"
->
-  <input type="hidden" name="form-name" value="kontakt" />
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
 
-  <p style="display: none;">
-    <label>Udfyld ikke dette felt: <input name="bot-field" /></label>
-  </p>
+const åbningstider = [
+  { dag: 'Mandag', tid: '8-18' },
+  { dag: 'Tirsdag', tid: '8-18' },
+  { dag: 'Onsdag', tid: '8-18' },
+  { dag: 'Torsdag', tid: '8-18' },
+  { dag: 'Fredag', tid: '8-18' },
+  { dag: 'Lørdag', tid: '9-14' },
+  { dag: 'Søndag', tid: 'Lukket' },
+];
+---
 
-  <div>
-    <label for="navn" class="block text-sm font-semibold mb-2">Navn *</label>
-    <input
-      type="text"
-      id="navn"
-      name="navn"
-      required
-      class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-[var(--color-accent-500)] focus:outline-none"
-    />
-  </div>
+<Layout title="Kontakt IC Køreskole i Randers">
+  <Nav />
 
-  <div>
-    <label for="email" class="block text-sm font-semibold mb-2">Email *</label>
-    <input
-      type="email"
-      id="email"
-      name="email"
-      required
-      class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-[var(--color-accent-500)] focus:outline-none"
-    />
-  </div>
+  <!-- HERO -->
+  <section class="bg-gradient-to-b from-[var(--color-brand-50)] to-white">
+    <div class="max-w-4xl mx-auto px-6 py-20 text-center">
+      <h1 class="text-4xl md:text-5xl font-extrabold text-[var(--color-brand-500)] mb-6">
+        Kontakt os
+      </h1>
+      <p class="text-lg text-[var(--color-ink-700)] max-w-2xl mx-auto">
+        Ring, skriv eller besøg os. Vi svarer inden for 24 timer på hverdage.
+      </p>
+    </div>
+  </section>
 
-  <div>
-    <label for="telefon" class="block text-sm font-semibold mb-2">Telefon (valgfrit)</label>
-    <input
-      type="tel"
-      id="telefon"
-      name="telefon"
-      class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-[var(--color-accent-500)] focus:outline-none"
-    />
-  </div>
+  <!-- KONTAKT + FORMULAR -->
+  <section class="max-w-6xl mx-auto px-6 pb-20">
+    <div class="grid md:grid-cols-2 gap-12">
 
-  <div>
-    <label for="besked" class="block text-sm font-semibold mb-2">Besked *</label>
-    <textarea
-      id="besked"
-      name="besked"
-      rows="5"
-      required
-      class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-[var(--color-accent-500)] focus:outline-none"
-    ></textarea>
-  </div>
+      <!-- VENSTRE: KONTAKTINFO -->
+      <div>
+        <h2 class="text-2xl font-extrabold mb-6 text-[var(--color-brand-500)]">
+          Kontaktinformation
+        </h2>
 
-  <label class="flex items-start gap-3 text-sm">
-    <input type="checkbox" name="samtykke" required class="mt-1" />
-    <span class="text-[var(--color-ink-700)]">
-      Jeg accepterer, at IC Køreskole må kontakte mig angående min henvendelse. Se
-      <a href="#" class="underline">privatlivspolitik</a>.
-    </span>
-  </label>
+        <div class="space-y-5 mb-10">
+          <div class="flex items-start gap-4">
+            <div class="text-2xl shrink-0">📞</div>
+            <div>
+              <p class="font-semibold mb-1">Telefon</p>
+              <a href="tel:+4527462746" class="text-[var(--color-ink-700)] hover:text-[var(--color-brand-500)]">
+                +45 27 46 27 46
+              </a>
+            </div>
+          </div>
 
-  <button type="submit" class="btn btn-primary w-full text-base py-3">
-    Send besked
-  </button>
-</form>
+          <div class="flex items-start gap-4">
+            <div class="text-2xl shrink-0">✉️</div>
+            <div>
+              <p class="font-semibold mb-1">Email</p>
+              <a href="mailto:ceper@live.dk" class="text-[var(--color-ink-700)] hover:text-[var(--color-brand-500)]">
+                ceper@live.dk
+              </a>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="text-2xl shrink-0">📍</div>
+            <div>
+              <p class="font-semibold mb-1">Adresse</p>
+              <p class="text-[var(--color-ink-700)]">
+                Vestergade 42<br />
+                8900 Randers
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="text-2xl font-extrabold mb-4 text-[var(--color-brand-500)]">
+          Åbningstider
+        </h2>
+        <div class="bg-white border-2 border-gray-100 rounded-2xl overflow-hidden">
+          <table class="w-full text-sm">
+            <tbody>
+              {åbningstider.map((a) => (
+                <tr class:list={['border-b border-gray-100 last:border-0', a.tid === 'Lukket' && 'text-[var(--color-ink-500)]']}>
+                  <td class="p-3 font-medium">{a.dag}</td>
+                  <td class="p-3 text-right">{a.tid}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <h2 class="text-2xl font-extrabold mt-10 mb-4 text-[var(--color-brand-500)]">
+          Følg os
+        </h2>
+        <div class="flex gap-3">
+          <a href="#" class="btn btn-secondary text-sm">Instagram</a>
+          <a href="#" class="btn btn-secondary text-sm">Facebook</a>
+          <a href="#" class="btn btn-secondary text-sm">TikTok</a>
+        </div>
+      </div>
+
+      <!-- HØJRE: FORMULAR -->
+      <div>
+        <h2 class="text-2xl font-extrabold mb-6 text-[var(--color-brand-500)]">
+          Send os en besked
+        </h2>
+
+        <form
+          name="kontakt"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          class="bg-white border-2 border-gray-100 rounded-2xl p-6 space-y-5"
+        >
+          <input type="hidden" name="form-name" value="kontakt" />
+
+          <p style="display: none;">
+            <label>Udfyld ikke dette felt: <input name="bot-field" /></label>
+          </p>
+
+          <div>
+            <label for="navn" class="block text-sm font-semibold mb-2">Navn *</label>
+            <input
+              type="text"
+              id="navn"
+              name="navn"
+              required
+              class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-[var(--color-accent-500)] focus:outline-none"
+            />
+          </div>
+
+          <div>
+            <label for="email" class="block text-sm font-semibold mb-2">Email *</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-[var(--color-accent-500)] focus:outline-none"
+            />
+          </div>
+
+          <div>
+            <label for="telefon" class="block text-sm font-semibold mb-2">Telefon (valgfrit)</label>
+            <input
+              type="tel"
+              id="telefon"
+              name="telefon"
+              class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-[var(--color-accent-500)] focus:outline-none"
+            />
+          </div>
+
+          <div>
+            <label for="besked" class="block text-sm font-semibold mb-2">Besked *</label>
+            <textarea
+              id="besked"
+              name="besked"
+              rows="5"
+              required
+              class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-[var(--color-accent-500)] focus:outline-none"
+            ></textarea>
+          </div>
+
+          <label class="flex items-start gap-3 text-sm">
+            <input type="checkbox" name="samtykke" required class="mt-1" />
+            <span class="text-[var(--color-ink-700)]">
+              Jeg accepterer, at IC Køreskole må kontakte mig angående min henvendelse. Se
+              <a href="#" class="underline">privatlivspolitik</a>.
+            </span>
+          </label>
+
+          <button type="submit" class="btn btn-primary w-full text-base py-3">
+            Send besked
+          </button>
+        </form>
+
+        <p class="text-xs text-center text-[var(--color-ink-500)] mt-4">
+          Vi vender tilbage inden for 24 timer på hverdage.
+        </p>
+      </div>
+    </div>
+  </section>
+
+    <!-- GOOGLE MAPS -->
+  <section class="max-w-6xl mx-auto px-6 pb-20">
+    <h2 class="text-2xl font-extrabold mb-6 text-[var(--color-brand-500)]">
+      Find os
+    </h2>
+    <div class="bg-[var(--color-brand-50)] border-2 border-gray-100 rounded-2xl overflow-hidden aspect-video">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2204.368395297056!2d10.02493591289766!3d56.461414237078515!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x464c1cd18aebb297%3A0xb91fa8cad14ed81!2sVestergade%2042%2C%208900%20Randers!5e0!3m2!1sda!2sdk!4v1791629609333!5m2!1sda!2sdk"
+        width="100%"
+        height="100%"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="strict-origin-when-cross-origin"
+        title="IC Køreskole — Vestergade 42, 8900 Randers"
+      ></iframe>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>

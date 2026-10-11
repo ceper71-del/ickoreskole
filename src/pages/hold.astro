@@ -2,57 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
-
-const hold = [
-  {
-    id: 1,
-    start: '3. februar 2026',
-    tid: 'mandag + onsdag, 17-19',
-    sted: '[Adresse], Randers',
-    ledige: 4,
-    iAlt: 12,
-  },
-  {
-    id: 2,
-    start: '10. februar 2026',
-    tid: 'tirsdag + torsdag, 17-19',
-    sted: '[Adresse], Randers',
-    ledige: 7,
-    iAlt: 12,
-  },
-  {
-    id: 3,
-    start: '17. februar 2026',
-    tid: 'mandag + onsdag, 17-19',
-    sted: '[Adresse], Randers',
-    ledige: 12,
-    iAlt: 12,
-  },
-  {
-    id: 4,
-    start: '24. februar 2026',
-    tid: 'tirsdag + torsdag, 18-20',
-    sted: '[Adresse], Randers',
-    ledige: 9,
-    iAlt: 12,
-  },
-  {
-    id: 5,
-    start: '2. marts 2026',
-    tid: 'mandag + onsdag, 17-19',
-    sted: '[Adresse], Randers',
-    ledige: 12,
-    iAlt: 12,
-  },
-  {
-    id: 6,
-    start: '9. marts 2026',
-    tid: 'tirsdag + torsdag, 18-20',
-    sted: '[Adresse], Randers',
-    ledige: 12,
-    iAlt: 12,
-  },
-];
+import { hold } from '../data/hold.js';
 
 const trin = [
   { n: '1', t: 'Du modtager en email', d: 'Med bekræftelse og praktisk info om dit hold.' },
@@ -103,7 +53,7 @@ const faq = [
     </h2>
     <div class="grid md:grid-cols-3 gap-6">
       {hold.map((h) => (
-        <div class="border-2 border-gray-100 rounded-2xl p-6 hover:border-[var(--color-accent-500)] transition flex flex-col">
+                <div class="border-2 border-[var(--color-brand-500)] rounded-2xl p-6 hover:border-gray-200 transition flex flex-col">
           <p class="text-sm font-semibold text-[var(--color-accent-600)] mb-2">
             HOLD {h.id}
           </p>
@@ -120,8 +70,16 @@ const faq = [
             </span>{' '}
             <span class="text-[var(--color-ink-700)]">pladser ledige</span>
           </p>
-          <a href="#tilmeld" class="btn btn-secondary w-full text-sm py-2 mt-auto">
-            Tilmeld dig
+          <a
+            href="#tilmeld"
+            class:list={[
+              'btn w-full text-sm py-2 mt-auto text-white',
+              h.ledige === 0 && 'bg-red-500 hover:bg-red-600',
+              h.ledige > 0 && h.ledige <= 4 && 'bg-orange-500 hover:bg-orange-600',
+              h.ledige > 4 && 'bg-green-600 hover:bg-green-700',
+            ]}
+          >
+            {h.ledige === 0 ? 'Fyldt — venteliste' : 'Tilmeld dig'}
           </a>
         </div>
       ))}

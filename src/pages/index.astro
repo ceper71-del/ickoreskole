@@ -2,12 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
-
-const hold = [
-  { id: 1, start: '3. februar 2026', tid: 'man + ons, 17-19', ledige: 4, iAlt: 12 },
-  { id: 2, start: '10. februar 2026', tid: 'tir + tor, 17-19', ledige: 7, iAlt: 12 },
-  { id: 3, start: '17. februar 2026', tid: 'man + ons, 17-19', ledige: 12, iAlt: 12 },
-];
+import { hold } from '../data/hold.js';
 
 const pakker = [
   {
@@ -65,35 +60,37 @@ const faq = [
   <Nav />
 
   <!-- HERO med baggrundsbillede -->
-    <!-- HERO -->
-  <section class="relative overflow-hidden min-h-[500px] md:min-h-[600px]">
-    <!-- Baggrundsbillede — hele billedet vises -->
-    <div class="absolute inset-0 bg-[#e8efe6]">
+     <!-- HERO -->
+  <section class="relative overflow-hidden flex flex-col min-h-[850px] md:min-h-[700px]">
+    <!-- Baggrundsbillede -->
+    <div class="absolute inset-0">
       <img
-        src="/images/ICK_Hjemme.jpg"
+        src="/images/hero.webp"
         alt=""
-        class="w-full h-full object-contain object-center"
+        class="w-full h-full object-cover object-[75%_bottom] md:object-right"
         aria-hidden="true"
       />
-      <!-- Valgfrit: let mørk overlay bag teksten -->
-      <div class="absolute inset-0 bg-black/30"></div>
+      <!-- Hvid gradient øverst så teksten er læsbar -->
+      <div class="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white via-white/80 to-transparent"></div>
     </div>
 
-    <!-- Tekst ovenpå -->
-    <div class="relative max-w-4xl mx-auto px-6 py-20 md:py-28 text-center">
-      <h1 class="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 drop-shadow-2xl">
+    <!-- Tekst øverst og centreret -->
+    <div class="relative max-w-4xl mx-auto px-6 pt-16 md:pt-24 text-center">
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-[var(--color-brand-500)] mb-6">
         Tag kørekortet i Randers — uden stress
       </h1>
-      <p class="text-lg md:text-xl text-white mb-10 drop-shadow-lg max-w-2xl mx-auto">
+      <p class="text-lg md:text-xl text-[var(--color-ink-700)] mb-8 max-w-2xl mx-auto">
         Book online på 60 sekunder. Gennemsigtige priser. Fast instruktør hele forløbet.
       </p>
-      <div class="flex flex-wrap gap-4 justify-center mb-8">
-        <a href="/booking" class="btn btn-primary text-base px-6 py-3">Book køretime</a>
-        <a href="/priser" class="btn text-base px-6 py-3 bg-white text-[var(--color-brand-500)] hover:bg-gray-100">
-          Se priser
-        </a>
+      <div class="flex flex-wrap gap-4 justify-center mb-6">
+        <a href="/priser" class="btn btn-brand">Se priser</a>
+        <a href="/hold" class="btn btn-brand">Holdstart</a>
       </div>
-      <p class="text-sm text-white drop-shadow-lg">
+    </div>
+
+    <!-- Stjerner nederst med hvid baggrund -->
+    <div class="relative mt-auto pb-8 text-center">
+      <p class="text-sm text-[var(--color-ink-700)] inline-block bg-white/80 backdrop-blur px-4 py-2 rounded-full">
         ★★★★★ 4,9/5 baseret på 87 anmeldelser · 120+ elever bestået
       </p>
     </div>
@@ -160,15 +157,25 @@ const faq = [
       Vælg det hold, der passer dig. Ledige pladser opdateres løbende.
     </p>
     <div class="grid md:grid-cols-3 gap-6">
-      {hold.map((h) => (
-        <div class="border-2 border-gray-100 rounded-2xl p-6 hover:border-[var(--color-accent-500)] transition">
-          <p class="text-sm font-semibold text-[var(--color-accent-600)] mb-2">HOLD {h.id}</p>
+            {hold.map((h) => (
+        <div class="border-2 border-[var(--color-brand-500)] rounded-2xl p-6 hover:border-gray-200 transition flex flex-col">
+          <p class="text-sm font-semibold text-[var(--color-brand-500)] mb-2">HOLD {h.id}</p>
           <h3 class="text-xl font-bold mb-4">{h.start}</h3>
           <p class="text-sm text-[var(--color-ink-700)] mb-2">Teori: {h.tid}</p>
           <p class="text-sm text-[var(--color-ink-700)] mb-6">
             Ledige pladser: <strong>{h.ledige} af {h.iAlt}</strong>
           </p>
-          <a href="/hold" class="btn btn-secondary w-full text-sm py-2">Tilmeld dig</a>
+          <a
+            href="/hold"
+            class:list={[
+              'btn w-full text-sm py-2 mt-auto text-white',
+              h.ledige === 0 && 'bg-red-500 hover:bg-red-600',
+              h.ledige > 0 && h.ledige <= 4 && 'bg-orange-500 hover:bg-orange-600',
+              h.ledige > 4 && 'bg-green-600 hover:bg-green-700',
+            ]}
+          >
+            {h.ledige === 0 ? 'Fyldt — venteliste' : 'Tilmeld dig'}
+          </a>
         </div>
       ))}
     </div>
@@ -277,11 +284,11 @@ const faq = [
     <h2 class="text-3xl md:text-4xl font-extrabold mb-4 text-[var(--color-brand-500)]">
       Klar til at starte?
     </h2>
-    <p class="text-lg text-[var(--color-ink-700)] mb-8">
-      Book din første køretime online på 60 sekunder. Vi glæder os til at møde dig.
+        <p class="text-lg text-[var(--color-ink-700)] mb-8">
+      Tilmeld dig et hold online på 60 sekunder. Vi glæder os til at møde dig.
     </p>
-    <a href="/booking" class="btn btn-primary text-lg px-8 py-4">
-      Book køretime nu
+    <a href="/hold" class="btn btn-brand text-lg px-8 py-4">
+      Tilmeld dig nu
     </a>
   </section>
 
