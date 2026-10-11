@@ -56,25 +56,23 @@ const faq = [
 ];
 ---
 
-<Layout title="Køreskole i Randers · Book online">
+<Layout title="Køreskole i Randers · IC Køreskole">
   <Nav />
 
-  <!-- HERO med baggrundsbillede -->
-     <!-- HERO -->
+  <!-- HERO -->
   <section class="relative overflow-hidden flex flex-col min-h-[850px] md:min-h-[700px]">
-    <!-- Baggrundsbillede -->
     <div class="absolute inset-0">
       <img
         src="/images/hero.webp"
         alt=""
         class="w-full h-full object-cover object-[75%_bottom] md:object-right"
         aria-hidden="true"
+        width="2014"
+        height="780"
       />
-      <!-- Hvid gradient øverst så teksten er læsbar -->
       <div class="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white via-white/80 to-transparent"></div>
     </div>
 
-    <!-- Tekst øverst og centreret -->
     <div class="relative max-w-4xl mx-auto px-6 pt-16 md:pt-24 text-center">
       <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-[var(--color-brand-500)] mb-6">
         Tag kørekortet i Randers — uden stress
@@ -88,7 +86,6 @@ const faq = [
       </div>
     </div>
 
-    <!-- Stjerner nederst med hvid baggrund -->
     <div class="relative mt-auto pb-8 text-center">
       <p class="text-sm text-[var(--color-ink-700)] inline-block bg-white/80 backdrop-blur px-4 py-2 rounded-full">
         ★★★★★ 4,9/5 baseret på 87 anmeldelser · 120+ elever bestået
@@ -101,21 +98,21 @@ const faq = [
     <div class="grid md:grid-cols-3 gap-8">
       <div class="text-center">
         <div class="text-4xl mb-4">⚡</div>
-        <h3 class="text-xl font-bold mb-3">Book online på 60 sekunder</h3>
+        <h2 class="text-xl font-bold mb-3">Book online på 60 sekunder</h2>
         <p class="text-[var(--color-ink-700)]">
           Vælg tid, få bekræftelse med det samme. Ingen telefonopkald, ingen ventetid.
         </p>
       </div>
       <div class="text-center">
         <div class="text-4xl mb-4">💰</div>
-        <h3 class="text-xl font-bold mb-3">Ingen skjulte gebyrer</h3>
+        <h2 class="text-xl font-bold mb-3">Ingen skjulte gebyrer</h2>
         <p class="text-[var(--color-ink-700)]">
           Se præcis hvad du betaler, før du starter. Alle priser er synlige fra dag ét.
         </p>
       </div>
       <div class="text-center">
         <div class="text-4xl mb-4">🎯</div>
-        <h3 class="text-xl font-bold mb-3">Fast instruktør hele forløbet</h3>
+        <h2 class="text-xl font-bold mb-3">Fast instruktør hele forløbet</h2>
         <p class="text-[var(--color-ink-700)]">
           Ingen skift, ingen forvirring. Du kører med samme instruktør fra første til sidste time.
         </p>
@@ -157,7 +154,7 @@ const faq = [
       Vælg det hold, der passer dig. Ledige pladser opdateres løbende.
     </p>
     <div class="grid md:grid-cols-3 gap-6">
-            {hold.map((h) => (
+      {hold.map((h) => (
         <div class="border-2 border-[var(--color-brand-500)] rounded-2xl p-6 hover:border-gray-200 transition flex flex-col">
           <p class="text-sm font-semibold text-[var(--color-brand-500)] mb-2">HOLD {h.id}</p>
           <h3 class="text-xl font-bold mb-4">{h.start}</h3>
@@ -186,52 +183,56 @@ const faq = [
     </div>
   </section>
 
-  <!-- PAKKER & PRISER -->
+    <!-- PAKKER & PRISER -->
   <section class="bg-[var(--color-brand-50)] py-20">
-    <div class="max-w-6xl mx-auto px-6">
+    <div class="max-w-3xl mx-auto px-6">
       <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-4 text-[var(--color-brand-500)]">
-        Vælg den pakke, der passer til dig
+        Hvad indeholder lovpakken?
       </h2>
-      <p class="text-center text-[var(--color-ink-700)] mb-12 max-w-2xl mx-auto">
-        Alle pakker inkluderer lovpligtig teori, manøvrebane og glatbane. Ingen skjulte gebyrer.
+      <p class="text-center italic text-[var(--color-ink-700)] mb-12 max-w-2xl mx-auto">
+        Alt du skal bruge for at tage kørekortet — samlet i én pakke.
       </p>
-      <div class="grid md:grid-cols-3 gap-6">
-        {pakker.map((p) => (
-          <div class:list={[
-            'rounded-2xl p-8 bg-white relative',
-            p.anbefalet ? 'border-2 border-[var(--color-accent-500)] shadow-lg' : 'border-2 border-gray-100'
-          ]}>
-            {p.anbefalet && (
-              <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--color-accent-500)] text-white text-xs font-bold px-3 py-1 rounded-full">
-                MEST POPULÆR
-              </span>
-            )}
-            <h3 class="text-2xl font-extrabold mb-2">{p.navn}</h3>
-            <p class="text-4xl font-extrabold text-[var(--color-brand-500)] mb-4">
-              {p.pris} <span class="text-base font-medium">kr.</span>
-            </p>
-            <p class="text-sm text-[var(--color-ink-700)] mb-6">{p.beskrivelse}</p>
-            <ul class="space-y-2 mb-8">
-              {p.features.map((f) => (
-                <li class="flex items-start gap-2 text-sm">
-                  <span class="text-[var(--color-success)] font-bold">✓</span>
-                  <span>{f}</span>
-                </li>
-              ))}
-            </ul>
-            <a href="/priser" class:list={[
-              'btn w-full text-sm',
-              p.anbefalet ? 'btn-primary' : 'btn-secondary'
-            ]}>
-              Vælg {p.navn}
-            </a>
-          </div>
-        ))}
+
+      <div class="bg-white border-2 border-[var(--color-brand-500)] rounded-2xl p-8 md:p-10">
+        <p class="text-[var(--color-ink-900)] leading-relaxed mb-6">
+          Lovpakken indeholder <strong>30 teorilektioner</strong>, <strong>17 kørelektioner</strong>, manøvrebane <strong>3 × 45 minutter</strong> og køreteknik <strong>4 × 45 minutter</strong>.
+        </p>
+
+        <p class="text-[var(--color-ink-900)] leading-relaxed mb-6">
+          Adgang til digital teoriportal er inkluderet i 4 måneder. Eventuel ekstra kørelektion koster <strong>700 kr.</strong>
+        </p>
+
+        <p class="text-[var(--color-ink-900)] leading-relaxed mb-6">
+          Priser på ferie-lynhold kan være højere og opkræves et depositum. Ved køb af enkelte moduler i stedet for pakken, er prisen <strong>4.500 kr. pr. modul</strong>. Der er 5 moduler i alt.
+        </p>
+
+        <p class="text-[var(--color-ink-900)] leading-relaxed mb-6">
+          Alle oplyste priser er inklusiv moms og administrationsgebyr. Ingen skjulte ekstra omkostninger.
+        </p>
+
+        <!-- Pris-boks -->
+        <div class="flex justify-between items-center py-5 my-8 border-t-2 border-b-2 border-[var(--color-brand-500)]">
+          <span class="font-semibold text-lg">Lovpakke + leje af skolevogn til køreprøven</span>
+          <span class="text-3xl font-extrabold text-[var(--color-brand-500)]">17.500 + 800,-</span>
+        </div>
+
+        <p class="text-sm text-[var(--color-ink-700)] leading-relaxed mb-6">
+          Udover afregning til køreskolen har du omkostninger som prøvegebyr til Færdselsstyrelsen (1.600 kr.), lægeattest (ca. 500 kr.), færdselsrelateret førstehjælpskursus (ca. 600 kr.) og pasfoto (ca. 150 kr.).
+        </p>
+
+        <p class="text-sm text-[var(--color-ink-700)] italic mb-8">
+          Vi assisterer med alt det praktiske, når du er startet.
+        </p>
+
+        <div class="flex flex-wrap gap-4 justify-center">
+          <a href="/hold" class="btn btn-brand text-base px-8 py-4">
+            Tilmeld dig nu
+          </a>
+          <a href="/priser" class="btn btn-secondary text-base px-8 py-4">
+            Se alle priser
+          </a>
+        </div>
       </div>
-      <p class="text-center text-xs text-[var(--color-ink-500)] mt-8 max-w-2xl mx-auto">
-        Lovpligtige gebyrer (teoriprøve, køreprøve, lægeattest og foto) er ikke inkluderet.
-        Se fuld prisoversigt på <a href="/priser" class="underline">priser-siden</a>.
-      </p>
     </div>
   </section>
 
@@ -284,7 +285,7 @@ const faq = [
     <h2 class="text-3xl md:text-4xl font-extrabold mb-4 text-[var(--color-brand-500)]">
       Klar til at starte?
     </h2>
-        <p class="text-lg text-[var(--color-ink-700)] mb-8">
+    <p class="text-lg text-[var(--color-ink-700)] mb-8">
       Tilmeld dig et hold online på 60 sekunder. Vi glæder os til at møde dig.
     </p>
     <a href="/hold" class="btn btn-brand text-lg px-8 py-4">

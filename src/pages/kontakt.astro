@@ -4,13 +4,9 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 
 const åbningstider = [
-  { dag: 'Mandag', tid: '8-18' },
-  { dag: 'Tirsdag', tid: '8-18' },
-  { dag: 'Onsdag', tid: '8-18' },
-  { dag: 'Torsdag', tid: '8-18' },
-  { dag: 'Fredag', tid: '8-18' },
-  { dag: 'Lørdag', tid: '9-14' },
-  { dag: 'Søndag', tid: 'Lukket' },
+  { dag: 'Mandag-torsdag', tid: 'kl. 8:00-18:00' },
+  { dag: 'Fredag', tid: 'kl. 8:00-15:00' },
+  { dag: 'Lørdag-søndag', tid: 'Lukket' },
 ];
 ---
 
@@ -72,16 +68,19 @@ const åbningstider = [
           </div>
         </div>
 
-        <h2 class="text-2xl font-extrabold mb-4 text-[var(--color-brand-500)]">
-          Åbningstider
+        <h2 class="text-xl font-extrabold mb-3 text-[var(--color-brand-500)]">
+          Kontakt:
         </h2>
-        <div class="bg-white border-2 border-gray-100 rounded-2xl overflow-hidden">
-          <table class="w-full text-sm">
+        <p class="text-sm italic text-[var(--color-ink-700)] mb-4">
+          Vi svarer på SMS, email og telefonopkald inden for kontakt tiderne.
+        </p>
+                <div class="bg-white border-2 border-gray-100 rounded-xl overflow-hidden max-w-xs">
+          <table class="w-full text-xs">
             <tbody>
               {åbningstider.map((a) => (
                 <tr class:list={['border-b border-gray-100 last:border-0', a.tid === 'Lukket' && 'text-[var(--color-ink-500)]']}>
-                  <td class="p-3 font-medium">{a.dag}</td>
-                  <td class="p-3 text-right">{a.tid}</td>
+                  <td class="px-3 py-2 font-medium">{a.dag}</td>
+                  <td class="px-3 py-2 text-right">{a.tid}</td>
                 </tr>
               ))}
             </tbody>
