@@ -22,10 +22,10 @@ const links = [
     </a>
 
     <!-- Desktop menu -->
-    <ul class="hidden md:flex items-center gap-6 text-sm font-medium text-[var(--color-ink-700)]">
+        <ul class="hidden md:flex items-center gap-6 text-sm font-medium text-[var(--color-ink-700)]">
       {links.map((link) => (
         <li>
-          <a href={link.href} class="hover:text-[var(--color-brand-500)] transition">
+          <a href={link.href} class="uppercase hover:text-[var(--color-brand-500)] transition">
             {link.label}
           </a>
         </li>
