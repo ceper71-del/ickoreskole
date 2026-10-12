@@ -1,0 +1,106 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+const trin = [
+  {
+    n: '1',
+    t: 'Tilmeld dig',
+    d: 'Vælg et teorihold og tilmeld dig online. Du får en bekræftelse med det samme.',
+  },
+  {
+    n: '2',
+    t: 'Teori',
+    d: 'Du gennemfører 30 teorilektioner — online eller fremmøde. Vi hjælper dig hele vejen.',
+  },
+  {
+    n: '3',
+    t: 'Manøvrebane',
+    d: '3 lektioner á 45 minutter på manøvrebanen.',
+  },
+  {
+    n: '4',
+    t: 'Køretimer',
+    d: '17 kørelektioner med fast instruktør. Vi tilpasser tempoet til dig.',
+  },
+  {
+    n: '5',
+    t: 'Teoriprøve',
+    d: 'Vi booker prøven, og du er klar. Du har adgang til teori i 4 måneder.',
+  },
+  {
+    n: '6',
+    t: 'Køreteknik',
+    d: '4 lektioner á 45 minutter på glatbanen — sikkerhed og kontrol.',
+  },
+  {
+    n: '7',
+    t: 'Køreprøve',
+    d: 'Vi lejer skolevogn og følger dig hele vejen til kortet.',
+  },
+];
+---
+
+<Layout title="Forløb · IC Køreskole Randers">
+  <Nav />
+
+   <!-- HERO -->
+  <section class="bg-gradient-to-b from-[var(--color-brand-50)] to-white">
+    <div class="max-w-4xl mx-auto px-6 py-20 text-center">
+      <h1 class="text-4xl md:text-5xl font-extrabold text-[var(--color-brand-500)] mb-6">
+        DIT FORLØB HOS IC KØRESKOLE
+      </h1>
+      <p class="text-lg italic text-[var(--color-ink-700)] max-w-2xl mx-auto">
+        Fra første teoritime til du står med kørekortet i hånden.
+      </p>
+    </div>
+  </section>
+
+  <!-- BILLEDE -->
+  <section class="max-w-5xl mx-auto px-6 pb-12">
+    <img
+      src="/images/forloeb.webp"
+      alt="Vejen til kørekort — teori, glatbane, kørsel og prøver"
+      class="w-full h-auto"
+      width="2000"
+      height="1125"
+    />
+  </section>
+
+  <!-- FORLØB -->
+  <section class="max-w-4xl mx-auto px-6 pb-20">
+    <div class="space-y-4">
+      {trin.map((t) => (
+        <div class="flex items-start gap-6 bg-white border-2 border-gray-100 rounded-2xl p-6 hover:border-[var(--color-brand-500)] transition">
+          <div class="w-12 h-12 rounded-full bg-[var(--color-brand-500)] text-white font-bold flex items-center justify-center shrink-0 text-lg">
+            {t.n}
+          </div>
+          <div>
+            <h2 class="text-xl font-extrabold text-[var(--color-brand-500)] mb-2">
+              {t.t}
+            </h2>
+            <p class="text-[var(--color-ink-700)]">{t.d}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-[var(--color-brand-50)] py-20">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h2 class="text-3xl md:text-4xl font-extrabold mb-4 text-[var(--color-brand-500)]">
+        Klar til at starte?
+      </h2>
+      <p class="text-lg text-[var(--color-ink-700)] mb-8">
+        Tilmeld dig et hold online på 2 minutter.
+      </p>
+      <a href="/hold" class="btn btn-brand text-lg px-8 py-4">
+        Tilmeld dig nu
+      </a>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>

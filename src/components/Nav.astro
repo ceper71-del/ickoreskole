@@ -2,9 +2,10 @@
 const links = [
   { href: '/priser', label: 'Priser' },
   { href: '/hold', label: 'Hold' },
-  { href: '/booking', label: 'Booking' },
+  { href: '/forloeb', label: 'Forløb' },
   { href: '/om-os', label: 'Om os' },
   { href: '/faq', label: 'FAQ' },
+  { href: '/booking', label: 'Booking' },
   { href: '/kontakt', label: 'Kontakt' },
 ];
 ---
@@ -20,6 +21,7 @@ const links = [
       </div>
     </a>
 
+    <!-- Desktop menu -->
     <ul class="hidden md:flex items-center gap-6 text-sm font-medium text-[var(--color-ink-700)]">
       {links.map((link) => (
         <li>
@@ -30,10 +32,50 @@ const links = [
       ))}
     </ul>
 
-        <div class="flex items-center gap-3 shrink-0">
-      <a href="/hold" class="btn-tilmeld">
-        Holdstart
-      </a>
+    <!-- Desktop knapper -->
+    <div class="hidden md:flex items-center gap-3 shrink-0">
+      <a href="/hold" class="btn-tilmeld">Holdstart</a>
+      <a href="/booking" class="btn-book">Book køretime</a>
     </div>
+
+    <!-- Hamburger (kun mobil) -->
+    <button
+      id="menu-toggle"
+      class="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5"
+      aria-label="Åbn menu"
+      aria-expanded="false"
+    >
+      <span class="block w-6 h-0.5 bg-[var(--color-brand-500)] transition-transform duration-300"></span>
+      <span class="block w-6 h-0.5 bg-[var(--color-brand-500)] transition-opacity duration-300"></span>
+      <span class="block w-6 h-0.5 bg-[var(--color-brand-500)] transition-transform duration-300"></span>
+    </button>
   </nav>
+
+  <!-- Mobil menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
+    <ul class="flex flex-col px-6 py-4 space-y-4">
+      {links.map((link) => (
+        <li>
+          <a href={link.href} class="block text-base font-medium text-[var(--color-ink-700)] hover:text-[var(--color-brand-500)]">
+            {link.label}
+          </a>
+        </li>
+      ))}
+      <li class="pt-4 border-t border-gray-100 flex flex-col gap-3">
+        <a href="/hold" class="btn-tilmeld text-center">Holdstart</a>
+        <a href="/booking" class="btn-book text-center">Book køretime</a>
+      </li>
+    </ul>
+  </div>
 </header>
+
+<script is:inline>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = !menu?.classList.contains('hidden');
+    menu?.classList.toggle('hidden');
+    toggle.setAttribute('aria-expanded', String(!isOpen));
+  });
+</script>
